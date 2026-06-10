@@ -5,27 +5,41 @@ const categories = [
   {
     icon: "building",
     title: "Construcción",
-    items: ["Construcción Residencial", "Construcción Comercial", "Obra Pública"],
+    items: [
+      { text: "Construcción Residencial" },
+      { text: "Construcción Comercial" },
+      { text: "Obra Pública" },
+      { text: "Estaciones de Servicio" },
+      { text: "Bodegas Industriales y Comerciales" }
+    ],
   },
   {
     icon: "compass",
     title: "Diseño y Planeación",
-    items: ["Diseño Arquitectónico", "Supervisión de Obra"],
+    items: [
+      { 
+        text: "Desarrollo de ingenierias", 
+        subitems: ["Topográficas", "Mecánica de Suelo", "Calculo Estructural", "Eléctricas", "Hidráulicas"] 
+      }
+    ],
   },
   {
     icon: "layers",
     title: "Infraestructura",
-    items: ["Urbanización", "Pavimentación"],
+    items: [
+      { text: "Urbanización" },
+      { text: "Habilitación de Puentes y Carreteras" }
+    ],
   },
   {
     icon: "tool",
     title: "Instalaciones y Mantenimiento",
     items: [
-      "Instalaciones Eléctricas",
-      "Instalaciones Hidráulicas",
-      "Remodelaciones",
-      "Ampliaciones",
-      "Mantenimiento Industrial",
+      { text: "Instalaciones Eléctricas" },
+      { text: "Instalaciones Hidráulicas" },
+      { text: "Remodelaciones" },
+      { text: "Ampliaciones" },
+      { text: "Mantenimiento Industrial" }
     ],
   },
 ];
@@ -60,8 +74,20 @@ const categories = [
             <ul class="service__list">
               {cat.items.map((item) => (
                 <li>
-                  <Icon name="check" size={18} class="service__check" />
-                  <span>{item}</span>
+                  <div class="service__item-main">
+                    <Icon name="check" size={18} class="service__check" />
+                    <span>{item.text}</span>
+                  </div>
+                  {item.subitems && (
+                    <ul class="service__sublist">
+                      {item.subitems.map((sub) => (
+                        <li>
+                          <span class="sublist__bullet" />
+                          <span>{sub}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </li>
               ))}
             </ul>
@@ -136,7 +162,10 @@ const categories = [
     display: grid;
     gap: 0.85rem;
   }
-  .service__list li {
+  .service__list > li {
+    display: block;
+  }
+  .service__item-main {
     display: flex;
     align-items: center;
     gap: 0.7rem;
@@ -146,6 +175,29 @@ const categories = [
   .service__check {
     flex-shrink: 0;
     color: var(--color-steel);
+  }
+  
+  /* Sublist styling for engineering subgenres */
+  .service__sublist {
+    display: grid;
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+    margin-left: 1.85rem;
+    list-style: none;
+  }
+  .service__sublist li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.92rem !important;
+    color: var(--color-text-muted) !important;
+  }
+  .sublist__bullet {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-navy);
+    flex-shrink: 0;
   }
 
   @media (max-width: 760px) {

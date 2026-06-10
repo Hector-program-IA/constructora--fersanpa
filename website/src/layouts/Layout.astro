@@ -7,8 +7,8 @@ interface Props {
 }
 
 const {
-  title = "GB Constructora | Construcción residencial, comercial y obra pública en Puebla",
-  description = "GB Constructora — 10 años desarrollando proyectos residenciales, comerciales y de obra pública en Puebla con altos estándares de calidad, profesionalismo y compromiso.",
+  title = "Grupo Fersanpa | Construcción residencial, comercial y obra pública en Puebla",
+  description = "Grupo Fersanpa — 10 años desarrollando proyectos residenciales, comerciales y de obra pública en Puebla con altos estándares de calidad, profesionalismo y compromiso.",
 } = Astro.props;
 
 const canonical = Astro.site
@@ -26,8 +26,8 @@ const canonical = Astro.site
 
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0f2d52" />
-    <meta name="author" content="GB Constructora" />
+    <meta name="theme-color" content="#9a6600" />
+    <meta name="author" content="Grupo Fersanpa SA de CV" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonical} />
 
@@ -36,7 +36,7 @@ const canonical = Astro.site
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:locale" content="es_MX" />
-    <meta property="og:site_name" content="GB Constructora" />
+    <meta property="og:site_name" content="Grupo Fersanpa" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -57,7 +57,7 @@ const canonical = Astro.site
       set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "GeneralContractor",
-        name: "GB Constructora",
+        name: "Grupo Fersanpa SA de CV",
         description:
           "Empresa constructora en Puebla con 10 años de experiencia en proyectos residenciales, comerciales y de obra pública.",
         areaServed: "Puebla, México",

@@ -4,28 +4,10 @@ import Icon from "./Icon.astro";
 // Datos de contacto — reemplazar los marcadores por la información real.
 const info = [
   {
-    icon: "pin",
-    label: "Dirección",
-    value: "[DIRECCIÓN]",
-    href: null,
-  },
-  {
-    icon: "phone",
-    label: "Teléfono",
-    value: "[TELÉFONO]",
-    href: "tel:[TELÉFONO]",
-  },
-  {
-    icon: "whatsapp",
-    label: "WhatsApp",
-    value: "[WHATSAPP]",
-    href: "https://wa.me/[WHATSAPP]",
-  },
-  {
     icon: "mail",
     label: "Correo Electrónico",
-    value: "[CORREO]",
-    href: "mailto:[CORREO]",
+    value: "e.vargas@grupofersanpa.com",
+    href: "mailto:e.vargas@grupofersanpa.com",
   },
 ];
 ---
@@ -264,10 +246,26 @@ const info = [
       return;
     }
 
-    // Demostración front-end. Conectar a un endpoint/servicio de correo real.
     const data = new FormData(form);
     const nombre = String(data.get("nombre") ?? "");
-    status.textContent = `Gracias${nombre ? ", " + nombre : ""}. Hemos recibido tu mensaje y te contactaremos pronto.`;
+    const correo = String(data.get("correo") ?? "");
+    const asunto = String(data.get("asunto") ?? "");
+    const mensaje = String(data.get("mensaje") ?? "");
+
+    const emailTo = "e.vargas@grupofersanpa.com";
+    const emailSubject = encodeURIComponent(asunto || "Contacto desde el sitio web");
+    const emailBody = encodeURIComponent(
+      `Nombre: ${nombre}\n` +
+      `Correo de contacto: ${correo}\n\n` +
+      `Mensaje:\n${mensaje}`
+    );
+
+    const mailtoUrl = `mailto:${emailTo}?subject=${emailSubject}&body=${emailBody}`;
+
+    // Redireccionar abriendo el cliente de correo local
+    window.location.href = mailtoUrl;
+
+    status.textContent = "Se ha abierto tu cliente de correo para enviar el mensaje directamente.";
     status.classList.add("is-ok");
     form.reset();
   });

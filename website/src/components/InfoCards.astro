@@ -5,24 +5,12 @@ const cards = [
   {
     icon: "target",
     title: "Misión",
-    text: "Nuestra misión es brindar soluciones constructivas de calidad, enfocadas en satisfacer las necesidades de nuestros clientes mediante procesos eficientes y profesionales.",
+    text: "Nuestra misión es brindar soluciones integrales en construcción con los más altos estándares de calidad, seguridad y sostenibilidad. Nos comprometemos a generar valor en cada etapa de nuestros proyectos, superando las expectativas de nuestros clientes y promoviendo el desarrollo continuo de nuestro equipo, la excelencia operativa y la integridad en los entornos donde participamos.",
   },
   {
     icon: "vision",
     title: "Visión",
-    text: "Nuestra visión es consolidarnos como una empresa referente en el sector de la construcción, destacando por la excelencia de nuestros proyectos y el compromiso con nuestros clientes.",
-  },
-  {
-    icon: "gallery",
-    title: "Galería",
-    text: "Conoce algunos de los proyectos residenciales y comerciales desarrollados por nuestro equipo.",
-    link: "#galeria",
-  },
-  {
-    icon: "message",
-    title: "Contacto",
-    text: "Estamos listos para atender tus proyectos y resolver cualquier duda sobre nuestros servicios.",
-    link: "#contacto",
+    text: "Nuestra visión es ser la primera opción para nuestros clientes en el sector de la construcción, siendo reconocidos internacionalmente por nuestra capacidad de transformar ideas en proyectos exitosos y de alto impacto. Aspiramos a destacar por nuestra innovación, calidad y compromiso con la sostenibilidad, generando valor duradero en la industria y en las comunidades donde operamos.",
   },
 ];
 ---
@@ -58,8 +46,10 @@ const cards = [
 <style>
   .cards {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
+    max-width: 1000px;
+    margin-inline: auto;
   }
   .card {
     background: #fff;

@@ -13,15 +13,7 @@ const navLinks = [
 ];
 
 const contact = [
-  { icon: "pin", value: "[DIRECCIÓN]", href: null },
-  { icon: "phone", value: "[TELÉFONO]", href: "tel:[TELÉFONO]" },
-  { icon: "mail", value: "[CORREO]", href: "mailto:[CORREO]" },
-];
-
-const socials = [
-  { icon: "facebook", label: "Facebook", href: "#" },
-  { icon: "instagram", label: "Instagram", href: "#" },
-  { icon: "linkedin", label: "LinkedIn", href: "#" },
+  { icon: "mail", value: "e.vargas@grupofersanpa.com", href: "mailto:e.vargas@grupofersanpa.com" },
 ];
 ---
 
@@ -33,17 +25,6 @@ const socials = [
         10 años construyendo proyectos residenciales, comerciales y de obra
         pública con calidad y profesionalismo en Puebla, México.
       </p>
-      <ul class="footer__socials">
-        {
-          socials.map((s) => (
-            <li>
-              <a href={s.href} aria-label={s.label} class="footer__social">
-                <Icon name={s.icon} size={20} />
-              </a>
-            </li>
-          ))
-        }
-      </ul>
     </div>
 
     <div class="footer__col">
@@ -66,19 +47,11 @@ const socials = [
         }
       </ul>
     </div>
-
-    <div class="footer__col">
-      <h4 class="footer__title">Legal</h4>
-      <ul class="footer__links">
-        <li><a href="#">Aviso de Privacidad</a></li>
-        <li><a href="#contacto">Solicitar cotización</a></li>
-      </ul>
-    </div>
   </div>
 
   <div class="footer__bottom">
     <div class="container footer__bottom-inner">
-      <p>© {year} GB Constructora. Todos los derechos reservados.</p>
+      <p>© {year} Grupo Fersanpa SA de CV. Todos los derechos reservados.</p>
       <p class="footer__credit">Puebla, México</p>
     </div>
   </div>
@@ -92,7 +65,7 @@ const socials = [
   }
   .footer__grid {
     display: grid;
-    grid-template-columns: 1.6fr 1fr 1.2fr 1fr;
+    grid-template-columns: 1.6fr 1fr 1.2fr;
     gap: 2.5rem;
     padding-bottom: 3rem;
   }
@@ -102,26 +75,6 @@ const socials = [
   .footer__tagline {
     font-size: 0.95rem;
     max-width: 340px;
-    margin-bottom: 1.5rem;
-  }
-  .footer__socials {
-    display: flex;
-    gap: 0.75rem;
-  }
-  .footer__social {
-    display: grid;
-    place-items: center;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #fff;
-    transition: background 0.25s, transform 0.25s;
-  }
-  .footer__social:hover {
-    background: rgba(255, 255, 255, 0.18);
-    transform: translateY(-3px);
   }
 
   .footer__title {

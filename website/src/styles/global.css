@@ -1,29 +1,29 @@
 /* ===========================
-   GB Constructora — Estilos globales
+   Grupo Fersanpa — Estilos globales
    =========================== */
 
 :root {
   /* Paleta corporativa */
-  --color-navy: #0f2d52;
-  --color-navy-700: #0c2444;
-  --color-navy-900: #081a32;
-  --color-steel: #6e7781;
-  --color-steel-light: #8a929b;
+  --color-navy: #9a6600;
+  --color-navy-700: #7d5300;
+  --color-navy-900: #121214;
+  --color-steel: #7c7770;
+  --color-steel-light: #9a958e;
   --color-bg: #ffffff;
-  --color-accent: #f4f6f8;
-  --color-accent-dark: #e6eaef;
-  --color-text: #1f2733;
-  --color-text-muted: #5c6571;
-  --color-border: #e2e7ed;
+  --color-accent: #faf9f6;
+  --color-accent-dark: #efede8;
+  --color-text: #1c1917;
+  --color-text-muted: #68625d;
+  --color-border: #e7e5e0;
 
   /* Tipografía */
   --font-heading: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-body: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   /* Sombras */
-  --shadow-sm: 0 1px 3px rgba(15, 45, 82, 0.06), 0 1px 2px rgba(15, 45, 82, 0.04);
-  --shadow-md: 0 6px 20px rgba(15, 45, 82, 0.08);
-  --shadow-lg: 0 18px 50px rgba(15, 45, 82, 0.14);
+  --shadow-sm: 0 1px 3px rgba(28, 25, 23, 0.04), 0 1px 2px rgba(28, 25, 23, 0.02);
+  --shadow-md: 0 6px 20px rgba(28, 25, 23, 0.06);
+  --shadow-lg: 0 18px 50px rgba(28, 25, 23, 0.1);
 
   /* Layout */
   --container: 1200px;

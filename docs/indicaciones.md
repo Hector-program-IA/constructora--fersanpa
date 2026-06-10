@@ -1,8 +1,8 @@
-# GB Constructora - Documento Maestro para Generación de Sitio Web
+# Grupo Fersanpa - Documento Maestro para Generación de Sitio Web
 
 ## Información General
 
-**Nombre de la empresa:** GB Constructora
+**Nombre de la empresa:** Grupo Fersanpa
 
 **Ubicación:** Puebla, México
 
@@ -13,7 +13,7 @@
 **Tipo de sitio:** Landing Page Corporativa Premium
 
 **Objetivo del sitio:**
-Presentar a GB Constructora como una empresa profesional, confiable y experimentada en el desarrollo de proyectos residenciales, comerciales y de obra pública, generando confianza y facilitando el contacto con clientes potenciales.
+Presentar a Grupo Fersanpa como una empresa profesional, confiable y experimentada en el desarrollo de proyectos residenciales, comerciales y de obra pública, generando confianza y facilitando el contacto con clientes potenciales.
 
 ---
 
@@ -67,7 +67,7 @@ Menú fijo durante el desplazamiento.
 
 Elementos:
 
-* Logo GB Constructora
+* Logo Grupo Fersanpa
 * Inicio
 * Nosotros
 * Servicios
@@ -90,7 +90,7 @@ Aplicar overlay azul oscuro semitransparente.
 
 ### Título
 
-GB Constructora
+Grupo Fersanpa
 
 ### Subtítulo
 
@@ -313,7 +313,7 @@ Enviar Mensaje
 
 ## Contenido
 
-* Logo GB Constructora
+* Logo Grupo Fersanpa
 * Dirección
 * Teléfono
 * Correo Electrónico
@@ -322,7 +322,7 @@ Enviar Mensaje
 
 ## Texto inferior
 
-©️ 2026 GB Constructora. Todos los derechos reservados.
+©️ 2026 Grupo Fersanpa. Todos los derechos reservados.
 
 ---
 
