@@ -1,0 +1,142 @@
+---
+import Logo from "./Logo.astro";
+import Icon from "./Icon.astro";
+
+const year = 2026;
+
+const navLinks = [
+  { href: "#inicio", label: "Inicio" },
+  { href: "#nosotros", label: "Nosotros" },
+  { href: "#servicios", label: "Servicios" },
+  { href: "#galeria", label: "Galería" },
+  { href: "#contacto", label: "Contacto" },
+];
+
+const contact = [
+  { icon: "mail", value: "e.vargas@grupofersanpa.com", href: "mailto:e.vargas@grupofersanpa.com" },
+];
+---
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <div class="footer__logo"><Logo variant="light" /></div>
+      <p class="footer__tagline">
+        10 años construyendo proyectos residenciales, comerciales y de obra
+        pública con calidad y profesionalismo en Puebla, México.
+      </p>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__title">Navegación</h4>
+      <ul class="footer__links">
+        {navLinks.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__title">Contacto</h4>
+      <ul class="footer__contact">
+        {
+          contact.map((c) => (
+            <li>
+              <Icon name={c.icon} size={18} class="footer__cicon" />
+              {c.href ? <a href={c.href}>{c.value}</a> : <span>{c.value}</span>}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="container footer__bottom-inner">
+      <p>© {year} Grupo Fersanpa SA de CV. Todos los derechos reservados.</p>
+      <p class="footer__credit">Puebla, México</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-navy-900);
+    color: rgba(255, 255, 255, 0.75);
+    padding-top: clamp(3rem, 6vw, 4.5rem);
+  }
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1.2fr;
+    gap: 2.5rem;
+    padding-bottom: 3rem;
+  }
+  .footer__logo {
+    margin-bottom: 1.25rem;
+  }
+  .footer__tagline {
+    font-size: 0.95rem;
+    max-width: 340px;
+  }
+
+  .footer__title {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .footer__links,
+  .footer__contact {
+    display: grid;
+    gap: 0.8rem;
+  }
+  .footer__links a,
+  .footer__contact a,
+  .footer__contact span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+  .footer__links a:hover,
+  .footer__contact a:hover {
+    color: #fff;
+  }
+  .footer__contact li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .footer__cicon {
+    flex-shrink: 0;
+    color: var(--color-steel-light);
+  }
+
+  .footer__bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-block: 1.5rem;
+  }
+  .footer__bottom-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  @media (max-width: 900px) {
+    .footer__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .footer__brand {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 520px) {
+    .footer__grid {
+      grid-template-columns: 1fr;
+    }
+    .footer__bottom-inner {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+</style>

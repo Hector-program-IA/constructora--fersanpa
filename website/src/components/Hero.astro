@@ -1,0 +1,207 @@
+---
+import Icon from "./Icon.astro";
+
+const stats = [
+  { value: "10", suffix: "años", label: "de experiencia" },
+  { value: "100", suffix: "%", label: "compromiso y calidad" },
+  { value: "3", suffix: "sectores", label: "residencial · comercial · pública" },
+];
+---
+
+<section class="hero" id="inicio">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__overlay" aria-hidden="true"></div>
+
+  <div class="container hero__content">
+    <p class="hero__eyebrow" data-reveal>
+      <Icon name="pin" size={16} />
+      <span>Puebla, México</span>
+    </p>
+
+    <h1 class="hero__title" data-reveal data-reveal-delay="1">Grupo Fersanpa</h1>
+
+    <p class="hero__subtitle" data-reveal data-reveal-delay="2">
+      10 años construyendo proyectos que generan valor y confianza.
+    </p>
+
+    <p class="hero__desc" data-reveal data-reveal-delay="3">
+      Desarrollamos proyectos industriales, estaciones de servicio, obra pública, comerciales y residenciales con
+      altos estándares de calidad, profesionalismo y compromiso.
+    </p>
+
+    <div class="hero__actions" data-reveal data-reveal-delay="4">
+      <a href="#contacto" class="btn btn--primary">
+        Contáctanos
+        <Icon name="arrow" size={18} />
+      </a>
+      <a href="#galeria" class="btn btn--ghost">Ver proyectos</a>
+    </div>
+
+    <ul class="hero__stats" data-reveal data-reveal-delay="4">
+      {
+        stats.map((s) => (
+          <li class="hero__stat">
+            <span class="hero__stat-num">
+              {s.value}<em>{s.suffix}</em>
+            </span>
+            <span class="hero__stat-label">{s.label}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <a href="#tarjetas" class="hero__scroll" aria-label="Desplazarse hacia abajo">
+    <Icon name="chevronDown" size={22} />
+  </a>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    color: #fff;
+  }
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    background-image: url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=2000&q=80");
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.08);
+    animation: heroZoom 18s ease-in-out infinite alternate;
+  }
+  @keyframes heroZoom {
+    from { transform: scale(1.08); }
+    to { transform: scale(1.16); }
+  }
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      rgba(8, 26, 50, 0.92) 0%,
+      rgba(15, 45, 82, 0.8) 45%,
+      rgba(15, 45, 82, 0.55) 100%
+    );
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+    padding-top: var(--header-h);
+  }
+
+  .hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero__title {
+    color: #fff;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero__subtitle {
+    font-family: var(--font-heading);
+    font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 1.25rem;
+    max-width: 620px;
+  }
+
+  .hero__desc {
+    font-size: 1.08rem;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 580px;
+    margin-bottom: 2.25rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .hero__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(1.5rem, 5vw, 3.5rem);
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  .hero__stat {
+    display: flex;
+    flex-direction: column;
+  }
+  .hero__stat-num {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+  }
+  .hero__stat-num em {
+    font-style: normal;
+    font-size: 0.5em;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: 0.15em;
+  }
+  .hero__stat-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.35rem;
+  }
+
+  .hero__scroll {
+    position: absolute;
+    left: 50%;
+    bottom: 1.75rem;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    animation: bob 2s ease-in-out infinite;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .hero__scroll:hover {
+    color: #fff;
+    border-color: #fff;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  @media (max-width: 600px) {
+    .hero__scroll { display: none; }
+  }
+</style>

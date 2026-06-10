@@ -1,0 +1,168 @@
+---
+import Icon from "./Icon.astro";
+
+const features = [
+  { icon: "users", title: "Arquitectos e ingenieros", text: "Equipo multidisciplinario especializado." },
+  { icon: "clock", title: "10 años de experiencia", text: "Trayectoria sólida y comprobada." },
+  { icon: "shield", title: "Estándares de calidad", text: "Resultados seguros y duraderos." },
+];
+---
+
+<section class="section section--accent" id="nosotros">
+  <div class="container nosotros">
+    <div class="nosotros__media" data-reveal>
+      <img
+        src="/images/nosotros.jpeg"
+        alt="Equipo de arquitectos e ingenieros de Grupo Fersanpa revisando planos en obra"
+        loading="lazy"
+        width="1100"
+        height="1300"
+      />
+      <div class="nosotros__badge">
+        <span class="nosotros__badge-num">10</span>
+        <span class="nosotros__badge-label">años de<br />experiencia</span>
+      </div>
+    </div>
+
+    <div class="nosotros__body" data-reveal data-reveal-delay="1">
+      <p class="section__eyebrow">Nosotros</p>
+      <h2 class="section__title">¿Quiénes Somos?</h2>
+      <div class="section__divider" style="margin-left:0;margin-right:auto"></div>
+
+      <p class="nosotros__lead">
+        Somos una empresa constructora ubicada en Puebla integrada por
+        arquitectos e ingenieros especializados en el desarrollo, supervisión y
+        ejecución de proyectos residenciales, comerciales y de obra pública.
+      </p>
+      <p>
+        Con más de 10 años de experiencia, trabajamos bajo estándares de calidad
+        que garantizan resultados funcionales, seguros y duraderos.
+      </p>
+      <p>
+        Nuestro compromiso es ofrecer soluciones eficientes adaptadas a las
+        necesidades de cada proyecto.
+      </p>
+
+      <ul class="nosotros__features">
+        {
+          features.map((f) => (
+            <li class="feature">
+              <span class="feature__icon" aria-hidden="true">
+                <Icon name={f.icon} size={22} />
+              </span>
+              <span>
+                <strong>{f.title}</strong>
+                <em>{f.text}</em>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <a href="#contacto" class="btn btn--primary">
+        Conversemos tu proyecto
+        <Icon name="arrow" size={18} />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .nosotros {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+  .nosotros__media {
+    position: relative;
+  }
+  .nosotros__media img {
+    width: 100%;
+    height: 100%;
+    max-height: 560px;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+  .nosotros__badge {
+    position: absolute;
+    right: -18px;
+    bottom: 32px;
+    background: var(--color-navy);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 1.1rem 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: var(--shadow-lg);
+  }
+  .nosotros__badge-num {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .nosotros__badge-label {
+    font-size: 0.78rem;
+    line-height: 1.25;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .nosotros__body p {
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+  }
+  .nosotros__lead {
+    font-size: 1.1rem;
+    color: var(--color-text) !important;
+    margin-top: 1.5rem;
+  }
+
+  .nosotros__features {
+    display: grid;
+    gap: 1rem;
+    margin: 1.75rem 0 2rem;
+  }
+  .feature {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .feature__icon {
+    flex-shrink: 0;
+    display: inline-grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    color: var(--color-navy);
+  }
+  .feature strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.98rem;
+    color: var(--color-navy);
+  }
+  .feature em {
+    font-style: normal;
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 860px) {
+    .nosotros {
+      grid-template-columns: 1fr;
+    }
+    .nosotros__media {
+      max-width: 520px;
+      margin-inline: auto;
+    }
+    .nosotros__badge { right: 12px; }
+  }
+</style>

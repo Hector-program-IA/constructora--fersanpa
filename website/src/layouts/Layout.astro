@@ -1,0 +1,107 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Grupo Fersanpa | Construcción residencial, comercial y obra pública en Puebla",
+  description = "Grupo Fersanpa — 10 años desarrollando proyectos residenciales, comerciales y de obra pública en Puebla con altos estándares de calidad, profesionalismo y compromiso.",
+} = Astro.props;
+
+const canonical = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).href
+  : Astro.url.href;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#9a6600" />
+    <meta name="author" content="Grupo Fersanpa SA de CV" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:site_name" content="Grupo Fersanpa" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Tipografías: Montserrat (títulos) + Open Sans (texto) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Datos estructurados (SEO local) -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "GeneralContractor",
+        name: "Grupo Fersanpa SA de CV",
+        description:
+          "Empresa constructora en Puebla con 10 años de experiencia en proyectos residenciales, comerciales y de obra pública.",
+        areaServed: "Puebla, México",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Puebla",
+          addressCountry: "MX",
+        },
+        knowsAbout: [
+          "Construcción residencial",
+          "Construcción comercial",
+          "Obra pública",
+          "Diseño arquitectónico",
+          "Urbanización",
+        ],
+      })}
+    />
+  </head>
+  <body>
+    <a href="#inicio" class="sr-only">Saltar al contenido</a>
+    <slot />
+
+    <script>
+      // Animaciones de entrada al hacer scroll
+      const reveal = () => {
+        const items = document.querySelectorAll("[data-reveal]");
+        if (!("IntersectionObserver" in window)) {
+          items.forEach((el) => el.classList.add("is-visible"));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+        );
+        items.forEach((el) => io.observe(el));
+      };
+      reveal();
+    </script>
+  </body>
+</html>

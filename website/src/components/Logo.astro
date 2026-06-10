@@ -1,0 +1,77 @@
+---
+/**
+ * Logo Grupo Fersanpa — emblema + wordmark.
+ */
+interface Props {
+  variant?: "dark" | "light";
+}
+const { variant = "dark" } = Astro.props;
+const textColor = variant === "light" ? "#ffffff" : "var(--color-text)";
+const subColor = variant === "light" ? "rgba(255,255,255,.7)" : "var(--color-navy)";
+---
+
+<a href="#inicio" class="logo" aria-label="Grupo Fersanpa — inicio">
+  <span class="logo__mark" aria-hidden="true">
+    <img 
+      src="/images/logo-fersampa.png" 
+      alt="Logo Grupo Fersanpa" 
+      class={`logo__img ${variant === 'light' ? 'is-light' : ''}`}
+      width="44"
+      height="44"
+    />
+  </span>
+  <span class="logo__text">
+    <strong style={`color:${textColor}`}>Grupo Fersanpa</strong>
+    <span style={`color:${subColor}`}>SA de CV</span>
+  </span>
+</a>
+
+<style define:vars={{ textColor, subColor }}>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .logo__mark {
+    display: inline-flex;
+    transition: transform 0.3s var(--ease);
+  }
+  .logo:hover .logo__mark {
+    transform: rotate(-3deg) scale(1.05);
+  }
+  .logo__img {
+    width: auto;
+    height: 40px;
+    object-fit: contain;
+    transition: filter 0.3s var(--ease);
+  }
+  
+  /* Filter to convert logo to white when header is transparent on dark background */
+  :global(.header[data-at-top]) .logo__img {
+    filter: brightness(0) invert(1);
+  }
+  
+  /* When variant is light, force white logo */
+  .logo__img.is-light {
+    filter: brightness(0) invert(1);
+  }
+  
+  .logo__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    font-family: var(--font-heading);
+  }
+  .logo__text strong {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .logo__text span {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+</style>

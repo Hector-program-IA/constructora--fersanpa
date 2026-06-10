@@ -1,0 +1,294 @@
+---
+import Icon from "./Icon.astro";
+
+const totalPhotos = 25;
+const projects = Array.from({ length: totalPhotos }, (_, i) => ({
+  img: `/images/fotos/foto-${i + 1}.jpeg`,
+})).filter((p) => !p.img.includes("foto-16.jpeg"));
+---
+
+<section class="section section--accent" id="galeria">
+  <div class="container">
+    <div class="section__head">
+      <p class="section__eyebrow">Portafolio</p>
+      <h2 class="section__title">Proyectos Realizados</h2>
+      <p class="section__subtitle">
+        Una muestra de los proyectos residenciales, comerciales y de obra
+        pública desarrollados por nuestro equipo.
+      </p>
+      <div class="section__divider"></div>
+    </div>
+
+    <div class="gallery" id="gallery-grid">
+      {
+        projects.map((p, i) => (
+          <button
+            class="gitem"
+            data-reveal
+            data-reveal-delay={String((i % 4) + 1)}
+            data-full={p.img}
+            data-title={p.title}
+            data-label={p.label}
+            aria-label={`Ampliar imagen: ${p.title}`}
+          >
+            <img src={p.img} alt={p.title} loading="lazy" width="800" height="600" />
+            <span class="gitem__overlay">
+              <span class="gitem__cat">{p.label}</span>
+              <span class="gitem__title">{p.title}</span>
+              <span class="gitem__zoom" aria-hidden="true">
+                <Icon name="gallery" size={20} />
+              </span>
+            </span>
+          </button>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal" id="gallery-modal" hidden role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <div class="modal__backdrop" data-modal-close></div>
+  <div class="modal__content">
+    <button class="modal__close" data-modal-close aria-label="Cerrar">
+      <Icon name="close" size={24} />
+    </button>
+    <img class="modal__img" id="modal-img" src="" alt="" />
+    <div class="modal__caption">
+      <span class="modal__cat" id="modal-cat"></span>
+      <span class="modal__title" id="modal-title"></span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+  
+  .gitem {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  }
+  
+  .gitem:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .gitem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease);
+  }
+  
+  .gitem:hover img {
+    transform: scale(1.06);
+  }
+  
+  .gitem__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(18, 18, 20, 0.85) 0%,
+      rgba(18, 18, 20, 0.3) 45%,
+      rgba(18, 18, 20, 0) 75%
+    );
+    opacity: 0;
+    transition: opacity 0.35s var(--ease);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 1.5rem;
+    text-align: left;
+    color: #fff;
+  }
+  
+  .gitem:hover .gitem__overlay {
+    opacity: 1;
+  }
+  
+  .gitem__cat {
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-navy);
+    margin-bottom: 0.35rem;
+  }
+  
+  .gitem__title {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.2;
+    max-width: 85%;
+  }
+  
+  .gitem__zoom {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    transition: background 0.3s, transform 0.3s;
+  }
+  
+  .gitem:hover .gitem__zoom {
+    background: var(--color-navy);
+    border-color: transparent;
+    transform: scale(1.05);
+  }
+
+  /* Modal */
+  .modal {
+    position: fixed;
+    inset: 0;
+    z-index: 110;
+    display: grid;
+    place-items: center;
+    padding: 1.5rem;
+    animation: fade 0.3s var(--ease);
+  }
+  .modal[hidden] {
+    display: none;
+  }
+  .modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(18, 18, 20, 0.85);
+    backdrop-filter: blur(8px);
+  }
+  .modal__content {
+    position: relative;
+    z-index: 2;
+    max-width: 960px;
+    width: 100%;
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    animation: pop 0.4s var(--ease);
+    border: 1px solid var(--color-border);
+  }
+  .modal__close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    z-index: 5;
+    transition: background 0.25s, transform 0.25s;
+  }
+  .modal__close:hover {
+    background: var(--color-navy);
+    border-color: transparent;
+    transform: scale(1.05);
+  }
+  .modal__img {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    background: #000;
+    display: block;
+  }
+  .modal__caption {
+    padding: 1.5rem 2rem;
+    background: #fff;
+    border-top: 1px solid var(--color-border);
+  }
+  .modal__cat {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-navy);
+    margin-bottom: 0.25rem;
+  }
+  .modal__title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+  
+  @keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: none; }
+  }
+
+  @media (max-width: 980px) {
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 540px) {
+    .gallery { grid-template-columns: 1fr; }
+    .modal__close { top: auto; bottom: -3.25rem; right: 50%; transform: translateX(50%); }
+  }
+</style>
+
+<script>
+  // Modal
+  const modal = document.getElementById("gallery-modal");
+  const modalImg = document.getElementById("modal-img") as HTMLImageElement | null;
+  const modalCat = document.getElementById("modal-cat");
+  const modalTitle = document.getElementById("modal-title");
+  const items = document.querySelectorAll<HTMLElement>(".gitem");
+  let lastFocused: HTMLElement | null = null;
+
+  const openModal = (item: HTMLElement) => {
+    if (!modal || !modalImg) return;
+    lastFocused = item;
+    modalImg.src = item.dataset.full ?? "";
+    modalImg.alt = item.dataset.title ?? "";
+    if (modalCat) modalCat.textContent = item.dataset.label ?? "";
+    if (modalTitle) modalTitle.textContent = item.dataset.title ?? "";
+    modal.hidden = false;
+    document.body.style.overflow = "hidden";
+    modal.querySelector<HTMLButtonElement>(".modal__close")?.focus();
+  };
+
+  const closeModal = () => {
+    if (!modal) return;
+    modal.hidden = true;
+    document.body.style.overflow = "";
+    lastFocused?.focus();
+  };
+
+  items.forEach((item) => item.addEventListener("click", () => openModal(item)));
+  modal
+    ?.querySelectorAll("[data-modal-close]")
+    .forEach((el) => el.addEventListener("click", closeModal));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal && !modal.hidden) closeModal();
+  });
+</script>

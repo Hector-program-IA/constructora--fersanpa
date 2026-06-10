@@ -1,0 +1,207 @@
+---
+import Icon from "./Icon.astro";
+
+const categories = [
+  {
+    icon: "building",
+    title: "Construcción",
+    items: [
+      { text: "Construcción Residencial" },
+      { text: "Construcción Comercial" },
+      { text: "Obra Pública" },
+      { text: "Estaciones de Servicio" },
+      { text: "Bodegas Industriales y Comerciales" }
+    ],
+  },
+  {
+    icon: "compass",
+    title: "Diseño y Planeación",
+    items: [
+      { 
+        text: "Desarrollo de ingenierias", 
+        subitems: ["Topográficas", "Mecánica de Suelo", "Calculo Estructural", "Eléctricas", "Hidráulicas"] 
+      }
+    ],
+  },
+  {
+    icon: "layers",
+    title: "Infraestructura",
+    items: [
+      { text: "Urbanización" },
+      { text: "Habilitación de Puentes y Carreteras" }
+    ],
+  },
+  {
+    icon: "tool",
+    title: "Instalaciones y Mantenimiento",
+    items: [
+      { text: "Instalaciones Eléctricas" },
+      { text: "Instalaciones Hidráulicas" },
+      { text: "Remodelaciones" },
+      { text: "Ampliaciones" },
+      { text: "Mantenimiento Industrial" }
+    ],
+  },
+];
+---
+
+<section class="section" id="servicios">
+  <div class="container">
+    <div class="section__head">
+      <p class="section__eyebrow">Qué hacemos</p>
+      <h2 class="section__title">Nuestros Servicios</h2>
+      <p class="section__subtitle">
+        Soluciones integrales para cada etapa de tu proyecto, agrupadas por
+        especialidad.
+      </p>
+      <div class="section__divider"></div>
+    </div>
+
+    <div class="services">
+      {
+        categories.map((cat, i) => (
+          <article
+            class="service"
+            data-reveal
+            data-reveal-delay={String((i % 4) + 1)}
+          >
+            <header class="service__head">
+              <span class="service__icon" aria-hidden="true">
+                <Icon name={cat.icon} size={26} />
+              </span>
+              <h3 class="service__title">{cat.title}</h3>
+            </header>
+            <ul class="service__list">
+              {cat.items.map((item) => (
+                <li>
+                  <div class="service__item-main">
+                    <Icon name="check" size={18} class="service__check" />
+                    <span>{item.text}</span>
+                  </div>
+                  {item.subitems && (
+                    <ul class="service__sublist">
+                      {item.subitems.map((sub) => (
+                        <li>
+                          <span class="sublist__bullet" />
+                          <span>{sub}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .service {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem;
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    position: relative;
+    overflow: hidden;
+  }
+  .service::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--color-navy);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s var(--ease);
+  }
+  .service:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+  }
+  .service:hover::before {
+    transform: scaleY(1);
+  }
+  .service__head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .service__icon {
+    flex-shrink: 0;
+    display: inline-grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: var(--color-accent);
+    color: var(--color-navy);
+    transition: background 0.4s var(--ease), color 0.4s var(--ease);
+  }
+  .service:hover .service__icon {
+    background: var(--color-navy);
+    color: #fff;
+  }
+  .service__title {
+    font-size: 1.25rem;
+  }
+  .service__list {
+    display: grid;
+    gap: 0.85rem;
+  }
+  .service__list > li {
+    display: block;
+  }
+  .service__item-main {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--color-text);
+    font-size: 0.98rem;
+  }
+  .service__check {
+    flex-shrink: 0;
+    color: var(--color-steel);
+  }
+  
+  /* Sublist styling for engineering subgenres */
+  .service__sublist {
+    display: grid;
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+    margin-left: 1.85rem;
+    list-style: none;
+  }
+  .service__sublist li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.92rem !important;
+    color: var(--color-text-muted) !important;
+  }
+  .sublist__bullet {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-navy);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 760px) {
+    .services { grid-template-columns: 1fr; }
+    .service { padding: 1.75rem; }
+  }
+</style>
